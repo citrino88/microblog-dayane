@@ -21,3 +21,19 @@ CREATE TABLE usuarios(
     tipo ENUM('admin','editor') NOT NULL
 );    
 ```
+
+### Criar tabela de notícias
+
+```sql
+CREATE TABLE noticias(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    titulo VARCHAR(150) NOT NULL,
+    texto TEXT NOT NULL,
+    resumo TINYTEXT NOT NULL,
+    imagem VARCHAR(45) NOT NULL,
+    usuario_id INT NOT NULL
+);    
+```
+
+
