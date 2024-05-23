@@ -6,4 +6,6 @@ Implantar o banco de dados no servidor/back-end.
 
 ### Criar o banco de dados
 
+```sql
 CREATE DATABASE microblog_dayane CHARACTER SET utf8mb4;
+```
