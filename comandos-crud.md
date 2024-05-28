@@ -128,10 +128,15 @@ SELECT titulo, data FROM noticias ORDER BY data DESC;
 **Objetivo** realizar uma consulta que mostre a data e o título da notícia **e** o nome do autor da notícia.
 
 ````sql
+-- Selecionando as colunas indicando as tabelas em que estão
 SELECT
     noticias.data,
     noticias.titulo,
     usuarios.nome
+
+-- Especificamos as tabelas que serão "juntadas/combinadas"    
 FROM noticias JOIN usuarios 
-ON noticias.usuario_id = usuarios.id;   
+-- Critério da junção/relação entre as tabelas, usamos as referências de FK e PK
+ON noticias.usuario_id = usuarios.id;
+--Acima no ON é onde as tabelas se comunicam, em Noticias A usuario_id é a Chave Estrangeira (FK-Foreign Key) e em Usuários a id é a Chave Primaria (PK-Primary Key)  
 ```
