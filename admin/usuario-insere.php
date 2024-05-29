@@ -14,7 +14,11 @@ if (isset($_POST['inserir'])){
 	// Capturando a senha e a codificando
 	$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-	echo $nome, $email, $tipo, $senha;
+	// Chamando a função de inserir usuário e passando os dados (dados indo para o banco de dados)
+	inserirUsuario($conexao, $nome, $email, $tipo, $senha);
+
+	// Redirecionando para a lista de usuários
+	header("location:usuarios.php");
 }
 ?>
 
