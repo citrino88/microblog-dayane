@@ -33,4 +33,14 @@ function lerUmUsuario($conexao, $id){
     return mysqli_fetch_assoc($resultado);
 }
 
+function atualizarUsuario($conexao, $id, $nome, $email, $senha, $tipo){
+    $sql = "UPDATE usuarios SET
+                nome = '$nome',
+                email = '$email',
+                senha = '$senha',
+                tipo = '$tipo'
+            WHERE id = $id"; // NÃO ESQUECER DE COLOCAR WHERE DE JEITO NENHUM SENÃO ATUALIZA TODOS DADOS IGUALMENTE 💀
+    mysqli_query($conexao, $sql) or die (mysqli_error($conexao));        
+}
+
 ?>
