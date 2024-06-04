@@ -48,6 +48,7 @@ $listaDeUsuarios=lerUsuarios($conexao);
 						
 							<a class="btn btn-danger excluir" 
 							href="usuario-exclui.php?id=<?=$usuario["id"]?>">
+							<!-- é deste ?id= que está pegando a parametro para apagar em usuario-exclui -->
 							<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>
