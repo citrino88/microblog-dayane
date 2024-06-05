@@ -1,5 +1,18 @@
 <?php
 require "inc/cabecalho.php"; 
+require "inc/funcoes-sessao.php";
+require "inc/funcoes-usuarios.php";
+
+// aqui faremos validação de 2 niveis pois é onde vai entrar a área administrativa
+if(isset($_POST['entrar'])){
+
+	// Validando os campos
+	if(empty($_POST['email']) || empty($_POST['senha'])){
+		header("location:login.php?campos_obrigatorios");
+		exit;
+	}
+}
+
 ?>
 
 <div class="row">
