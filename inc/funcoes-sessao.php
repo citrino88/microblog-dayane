@@ -24,8 +24,22 @@ function verificaAcesso(){
         header("location:../login.php");
 
         // Paramos qualquer outra execução/processamento
-        exit; // ou die()
+        exit; // ou die();
     }
+}
+
+// Abaixo a sessão não precisa saber a senha, porque só pelo id ele já sabe quem é a pessoa.
+function login($id, $nome, $tipo){
+    // Variáveis de sessão
+    $_SESSION['id'] = $id;
+    $_SESSION['nome'] = $nome;
+    $_SESSION['tipo'] = $tipo;
+}
+
+function logout(){
+    session_destroy();
+    header("location:../login.php");
+    exit; // ou die();
 }
 
 ?>
