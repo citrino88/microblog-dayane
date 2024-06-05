@@ -11,6 +11,16 @@ if(isset($_POST['entrar'])){
 		header("location:login.php?campos_obrigatorios");
 		exit;
 	}
+
+	// Capturando os dados digitados
+	$email = $_POST['email'];
+	$senha = $_POST['senha'];
+
+	/* 1) Buscando no banco de dados, através do e-mail digitado, se existe um usuário cadastrado. */
+	$usuario = buscarUsuario($conexao, $email);
+	// ainda não estou permitindo a entrada, estamos apenas verificando se o usuario existe. Ver em funcoes-usuarios.php
+
+	
 }
 
 ?>
