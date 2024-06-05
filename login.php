@@ -20,7 +20,23 @@ if(isset($_POST['entrar'])){
 	$usuario = buscarUsuario($conexao, $email);
 	// ainda não estou permitindo a entrada, estamos apenas verificando se o usuario existe. Ver em funcoes-usuarios.php
 
-	
+	/* 2) Verificação de usuário e senha
+	Se o usuário/e-mail existe no banco E se a senha digitada for igual a do banco de dados */
+
+	if($usuario !== null && password_verify($senha, $usuario['senha'])){
+		//...então, inicie o processo de login
+		login($usuario['id'], $usuario['nome'], $usuario['tipo']);
+
+		// Redirecione para a index admin
+		header("location:admin/index.php");
+		
+		exit;
+	} else {
+		// Senão, senha está errada e não pode entrar no sistema
+		header("location:login.php?dados_incorretos");
+		exit;
+	}
+
 }
 
 ?>
