@@ -1,5 +1,28 @@
 <?php 
 require_once "../inc/cabecalho-admin.php";
+require_once "../inc/funcoes-noticias.php";
+
+if(isset($_POST['inserir'])){
+	$titulo = $_POST['titulo'];
+	$texto = $_POST['texto'];
+	$resumo = $_POST['resumo'];
+
+	/* Obtendo o id do usuário que está logado e inserindo a notícia. Portanto, a notícia será associada ao usuário devido ao uso de chave estrangeira e relacionamento no banco. */
+	$usuarioId = $_SESSION['id'];
+
+	/* Capturando dados do arquivo enviado (imagens, pdf, .doc, etc...); pega os dados e transforma num Array */
+	$imagem = $_FILES['imagem'];
+
+	echo "<pre>";
+	var_dump($imagem);
+	echo "</pre>";
+
+	echo "<p>$titulo</p>";
+	echo "<p>$texto</p>";
+	echo "<p>$resumo</p>";
+	echo "<p>$usuarioId</p>";
+}
+
 ?>
 
 
@@ -9,8 +32,10 @@ require_once "../inc/cabecalho-admin.php";
 		<h2 class="text-center">
 		Inserir nova notícia
 		</h2>
-				
-		<form autocomplete="off" class="mx-auto w-75" action="" method="post" id="form-inserir" name="form-inserir">            
+		
+		<!-- Se seu formulário vai enviar arquivos, então ele PRECISA TER O 'ENCTYPE=MULTIPART/FORM-DATA' -->
+		<!-- O atributo enctype com o valor indicado é necessário quando queremos que o formulário aceite o envio/processamento de arquivos de qualquer natureza. -->
+		<form enctype="multipart/form-data" autocomplete="off" class="mx-auto w-75" action="" method="post" id="form-inserir" name="form-inserir">            
 
 			<div class="mb-3">
                 <label class="form-label" for="titulo">Título:</label>
