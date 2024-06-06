@@ -41,7 +41,14 @@ function inserirNoticia($conexao, $titulo, $texto, $resumo, $nomeImagem, $usuari
 
 function lerNoticias($conexao, $idUsuario, $tipoUsuario){
     // aqui não deixamos * tudo, pois tras muita informação e só vamos usar, Titulo, Data e Autor
-    $sql = "SELECT id, titulo, data FROM noticias ORDER BY data DESC";
+    $sql = "SELECT 
+                noticias.id, 
+                noticias.titulo, 
+                noticias.data,
+                usuarios.nome 
+            FROM noticias JOIN usuarios -- Aqui ocorre a junção/relação
+            ON noticias.usuario_id = usuarios.id -- Aqui onde relaciona a FK com a PK
+            ORDER BY data DESC";
 
     $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
