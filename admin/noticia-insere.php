@@ -17,9 +17,10 @@ if(isset($_POST['inserir'])){
 	upload($imagem);
 
 	/* Enviar dados para o banco de dados */
-	inserirNoticia();
+	inserirNoticia($conexao, $titulo, $texto, $resumo, $imagem['name'], $usuarioId);
+	/* acima temos via post/form titulo, texto, resumo; Do usuario q inseiu imagem; da SESSION vem o usuarioId */
 
-	header("location:noticia.php");
+	header("location:noticias.php");
 }
 
 ?>

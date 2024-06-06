@@ -30,7 +30,15 @@ function upload($arquivo){
     move_uploaded_file($temporario, $destino);
 }
 
-function inserirNoticia($conexao){}
+function inserirNoticia(
+    $conexao, $titulo, $texto, $resumo, $nomeImagem, $usuarioId){
+
+        $sql = "INSERT INTO noticias(
+            titulo, texto, resumo, imagem, usuario_id)
+            VALUES ('$titulo', '$texto', '$resumo', '$nomeImagem', $usuarioId)";
+        
+        mysqli_query($conexao, $sql) or die (mysqli_error($conexao));
+    }
 
 function lerNoticias($conexao){}
 
