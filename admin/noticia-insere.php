@@ -13,14 +13,13 @@ if(isset($_POST['inserir'])){
 	/* Capturando dados do arquivo enviado (imagens, pdf, .doc, etc...); pega os dados e transforma num Array */
 	$imagem = $_FILES['imagem'];
 
-	echo "<pre>";
-	var_dump($imagem);
-	echo "</pre>";
+	/* Fazendo o upload da imagem para o servidor */
+	upload($imagem);
 
-	echo "<p>$titulo</p>";
-	echo "<p>$texto</p>";
-	echo "<p>$resumo</p>";
-	echo "<p>$usuarioId</p>";
+	/* Enviar dados para o banco de dados */
+	inserirNoticia();
+
+	header("location:noticia.php");
 }
 
 ?>
