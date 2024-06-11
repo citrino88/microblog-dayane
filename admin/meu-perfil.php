@@ -5,7 +5,7 @@ require_once "../inc/funcoes-usuarios.php";
 
 // Verificando se o usuário pode acessar esta página
 verificaAcesso();
-verificaNivel();
+
 
 /* 2) Pegue o ID do usuário através da SESSÃO */
 /* Pegando o valor do parâmetro id vindo da URL */
@@ -18,18 +18,19 @@ $dadosUsuario = lerUmUsuario($conexao, $id);
 
 /* 4) Programe uma condicional para detectar se o formulário de atualização foi acionado.
 
-		4.1) Capture os dados digitados no formulário (nome, e-mail)    
-		4.2) Capture o tipo do usuário através da SESSÃO    
-		4.3) Faça a programação condicional necessária para a senha (é o mesmo código usado em usuario-atualiza.php) 
-		 */
+		4.1) Capture os dados digitados no formulário (nome, e-mail) */
 if(isset($_POST['atualizar'])){
 	$nome = $_POST['nome'];
 	$email = $_POST['email'];
-	$tipo = $_POST['tipo'];
+
+	// 4.2) Capture o tipo do usuário através da SESSÃO    
+	$tipo = $_SESSION['tipo'];
 	
 	/* Lógica para tratamento da senha 
 	Se o campo da senha estiver vazio OU se a senha digitada for a mesma já existente no banco, então significa que o usuário NÃO ALTEROU A SENHA. Portanto, devemos MANTER a senha
 	existente no banco.	*/
+
+	// 4.3) Faça a programação condicional necessária para a senha (é o mesmo código usado em usuario-atualiza.php)
 	if( empty($_POST['senha']) || 
 		password_verify($_POST['senha'], $dadosUsuario['senha']) ){
 
