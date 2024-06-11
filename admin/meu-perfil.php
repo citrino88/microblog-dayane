@@ -42,12 +42,14 @@ if(isset($_POST['atualizar'])){
 
 	// 4.4) Fora da condicional da senha, chame a função atualizarUsuario e passe os dados pra ela
 	atualizarUsuario($conexao, $id, $nome, $email, $senha, $tipo);
-
+	
+	/* 5) DESAFIO: faça com que, ao mudar o nome do usuário, automaticamente apareça o novo nome na index.php */
+	$_SESSION['nome'] = $nome;
 	// 4.5) Redirecione para a página index.php (a que está dentro de admin)
 	header("location:index.php");
 } // FIM IF ISSET
 		
-/* 5) DESAFIO: faça com que, ao mudar o nome do usuário, automaticamente apareça o novo nome na index.php */
+
 ?>
 
 
