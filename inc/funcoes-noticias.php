@@ -67,7 +67,21 @@ function lerNoticias($conexao, $idUsuario, $tipoUsuario){
     return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 }
 
-function lerUmaNoticia($conexao){}
+function lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario){
+    if ($tipoUsuario == 'admin') {
+        // Pode carregar/ver qualquer notícia
+        $sql = "SELECT * FROM noticias WHERE id = $idNoticia";
+    } else {
+        /* Pode carregar/ver SOMENTE SUA notícia
+         (basta saber qual notícia e qual usuário) */
+        $sql = "SELECT * FROM noticias WHERE id = $idNoticia AND usuario_id = $idUsuario";
+    }
+    
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+    /* Retornamos UM ÚNICO array associativo com os dados da notícia escolhida */
+    return mysqli_fetch_assoc($resultado);
+}
 
 function atualizarNoticia($conexao){}
 
