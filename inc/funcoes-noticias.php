@@ -45,7 +45,9 @@ function inserirNoticia($conexao, $titulo, $texto, $resumo, $nomeImagem, $usuari
 
 function lerNoticias($conexao, $idUsuario, $tipoUsuario){
     // aqui não deixamos * tudo, pois tras muita informação e só vamos usar, Titulo, Data e Autor
-    $sql = "SELECT 
+    // Admin pode ver TUDO
+    if ($tipoUsuario == 'admin') {
+        $sql = "SELECT 
                 noticias.id, 
                 noticias.titulo, 
                 noticias.data,
@@ -53,6 +55,12 @@ function lerNoticias($conexao, $idUsuario, $tipoUsuario){
             FROM noticias JOIN usuarios -- Aqui ocorre a junção/relação
             ON noticias.usuario_id = usuarios.id -- Aqui onde relaciona a FK com a PK
             ORDER BY data DESC";
+    } else {
+        // Editor pode ver SOMENTE a notícia que é DELE/DELA
+        $sql = "SELECT titulo, data, id FROM noticias
+                WHERE usuario_id = $idUsuario
+                ORDER BY data DESC";
+    }
 
     $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
