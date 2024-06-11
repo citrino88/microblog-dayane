@@ -41,7 +41,7 @@ function inserirNoticia($conexao, $titulo, $texto, $resumo, $nomeImagem, $usuari
             VALUES ('$titulo', '$texto', '$resumo', '$nomeImagem', $usuarioId)";
         
         mysqli_query($conexao, $sql) or die (mysqli_error($conexao));
-    }
+}
 
 function lerNoticias($conexao, $idUsuario, $tipoUsuario){
     // aqui não deixamos * tudo, pois tras muita informação e só vamos usar, Titulo, Data e Autor
@@ -83,6 +83,29 @@ function lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario){
     return mysqli_fetch_assoc($resultado);
 }
 
-function atualizarNoticia($conexao){}
+function atualizarNoticia($conexao, $titulo, $texto, $resumo, $imagem, $idNoticia, $idUsuario, $tipoUsuario){
+    if ($tipoUsuario == 'admin') {
+        // Pode atualizar qualquer notícia (basta saber qual notícia)
+        $sql = "UPDATE noticias SET
+                    titulo = '$titulo',
+                    texto = '$texto',
+                    resumo = '$resumo',
+                    imagem = '$imagem'
+                WHERE id = $idNoticia "; // PERIGOOOO!💀
+    } else {
+        /* Pode atualizar SOMENTE suas notícias (basta saber qual notícia E qual usuário) */
+        $sql = "UPDATE noticias SET
+                    titulo = '$titulo',
+                    texto = '$texto',
+                    resumo = '$resumo',
+                    imagem = '$imagem'
+                WHERE 
+                id = $idNoticia 
+                AND 
+                usuario_id = $idUsuario"; // PERIGOOOO!💀
+    }
+
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+}
 
 function excluirNoticia($conexao){}
