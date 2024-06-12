@@ -14,7 +14,7 @@ $dadosNoticia = lerNoticiaCompleta($conexao, $id);
             <time><?=formataData($dadosNoticia['data'])?></time> - <span><?=$dadosNoticia['nome']?></span>
         </p>
         <img src="imagens/<?=$dadosNoticia['imagem']?>" alt="" class="float-start pe-2 img-fluid">
-        <p><?=$dadosNoticia['texto']?></p>
+        <p class="ajusta-texto" ><?=$dadosNoticia['texto']?></p>
     </article>
    
 </div>        
