@@ -123,3 +123,24 @@ function excluirNoticia($conexao, $idNoticia, $idUsuario,$tipoUsuario){
     mysqli_query($conexao, $sql) or die (mysqli_error($conexao));   
     // Obs.: NUNCA esqueça de passar pelo menos uma condição para o DELETE!
 }
+
+/* ************************************************** */
+
+/* Funções usadas nas páginas PÚBLICAS do Microblog:
+index, noticia, resultados */
+
+// index.php
+function lerTodasNoticias($conexao){
+    $sql = "SELECT titulo, imagem, resumo, id
+            FROM noticias ORDER BY data DESC";
+
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));  
+    
+    return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+}
+
+// noticia.php
+function lerNoticiaCompleta($conexao){}
+
+// resultados.php
+function busca($conexao){}
